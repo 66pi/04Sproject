@@ -26,3 +26,25 @@ successResponse：
 | ResponseField     |     Type |   Description   | 
 | :--------------: | :--------:| :------: |
 |    userid |   Integer |  新用户的id |
+
+## 1.2 用户登陆
+
+调用该API，可以进行用户登录
+
+- **用户登陆**
+
+```json
+url:/user/login?username={username}&password={password}
+method：GET
+
+```
+
+| RequestField     |     Type |   Description   | 
+| :--------------: | :--------:| :------: |
+|    username|   String |  用户名 |
+|    password|   String |  密码 |
+
+| Response Status Code  |   Description   | 
+| :--------------: |  :------: |
+|    200 |  注册成功 |
+|    非200 |  注册失败 |

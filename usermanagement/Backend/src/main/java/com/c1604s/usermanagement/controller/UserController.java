@@ -14,7 +14,9 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public void login(){       }
+    public void login(@RequestParam String username, @RequestParam String password){
+
+    }
 
     @GetMapping("/getUserInfo")
     public void getUserInfo(){}

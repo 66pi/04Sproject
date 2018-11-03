@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.c1604s.usermanagement.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.c1604s.usermanagement.po.User">
+    <id column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="encrypted_password" jdbcType="VARCHAR" property="encryptedPassword" />
+    <result column="realname" jdbcType="VARCHAR" property="realname" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="email_auth_code" jdbcType="VARCHAR" property="emailAuthCode" />
+    <result column="is_email_verified" jdbcType="BIT" property="isEmailVerified" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="mobile_auth_code" jdbcType="VARCHAR" property="mobileAuthCode" />
+    <result column="is_mobile_verified" jdbcType="BIT" property="isMobileVerified" />
+    <result column="is_delete" jdbcType="BIT" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userid, username, encrypted_password, realname, birthday, email, email_auth_code, 
+    is_email_verified, mobile, mobile_auth_code, is_mobile_verified, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where userid = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where userid = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.c1604s.usermanagement.po.User">
+    insert into user (userid, username, encrypted_password, 
+      realname, birthday, email, 
+      email_auth_code, is_email_verified, mobile, 
+      mobile_auth_code, is_mobile_verified, is_delete
+      )
+    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{encryptedPassword,jdbcType=VARCHAR}, 
+      #{realname,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{email,jdbcType=VARCHAR}, 
+      #{emailAuthCode,jdbcType=VARCHAR}, #{isEmailVerified,jdbcType=BIT}, #{mobile,jdbcType=VARCHAR}, 
+      #{mobileAuthCode,jdbcType=VARCHAR}, #{isMobileVerified,jdbcType=BIT}, #{isDelete,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.c1604s.usermanagement.po.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="encryptedPassword != null">
+        encrypted_password,
+      </if>
+      <if test="realname != null">
+        realname,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="emailAuthCode != null">
+        email_auth_code,
+      </if>
+      <if test="isEmailVerified != null">
+        is_email_verified,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="mobileAuthCode != null">
+        mobile_auth_code,
+      </if>
+      <if test="isMobileVerified != null">
+        is_mobile_verified,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="encryptedPassword != null">
+        #{encryptedPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="emailAuthCode != null">
+        #{emailAuthCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isEmailVerified != null">
+        #{isEmailVerified,jdbcType=BIT},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileAuthCode != null">
+        #{mobileAuthCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isMobileVerified != null">
+        #{isMobileVerified,jdbcType=BIT},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.c1604s.usermanagement.po.User">
+    update user
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="encryptedPassword != null">
+        encrypted_password = #{encryptedPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="emailAuthCode != null">
+        email_auth_code = #{emailAuthCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isEmailVerified != null">
+        is_email_verified = #{isEmailVerified,jdbcType=BIT},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileAuthCode != null">
+        mobile_auth_code = #{mobileAuthCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isMobileVerified != null">
+        is_mobile_verified = #{isMobileVerified,jdbcType=BIT},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=BIT},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.c1604s.usermanagement.po.User">
+    update user
+    set username = #{username,jdbcType=VARCHAR},
+      encrypted_password = #{encryptedPassword,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      email = #{email,jdbcType=VARCHAR},
+      email_auth_code = #{emailAuthCode,jdbcType=VARCHAR},
+      is_email_verified = #{isEmailVerified,jdbcType=BIT},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      mobile_auth_code = #{mobileAuthCode,jdbcType=VARCHAR},
+      is_mobile_verified = #{isMobileVerified,jdbcType=BIT},
+      is_delete = #{isDelete,jdbcType=BIT}
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>
