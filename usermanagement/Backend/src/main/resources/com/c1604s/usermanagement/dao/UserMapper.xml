@@ -29,13 +29,13 @@
     delete from user
     where userid = #{userid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.c1604s.usermanagement.po.User">
-    insert into user (userid, username, encrypted_password, 
+  <insert id="insert" parameterType="com.c1604s.usermanagement.po.User" useGeneratedKeys="true" keyProperty="userid">
+    insert into user (username, encrypted_password,
       realname, birthday, email, 
       email_auth_code, is_email_verified, mobile, 
       mobile_auth_code, is_mobile_verified, is_delete
       )
-    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{encryptedPassword,jdbcType=VARCHAR}, 
+    values (#{username,jdbcType=VARCHAR}, #{encryptedPassword,jdbcType=VARCHAR},
       #{realname,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{email,jdbcType=VARCHAR}, 
       #{emailAuthCode,jdbcType=VARCHAR}, #{isEmailVerified,jdbcType=BIT}, #{mobile,jdbcType=VARCHAR}, 
       #{mobileAuthCode,jdbcType=VARCHAR}, #{isMobileVerified,jdbcType=BIT}, #{isDelete,jdbcType=BIT}
